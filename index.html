@@ -145,7 +145,7 @@
   }
 
   /* ---- 3 · план: тетрадь, которую листаешь (фирменный ход) --------------------- */
-  .plan { height: 100%; display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: var(--v-8); align-items: center; padding: 5rem var(--v-gutter) 2rem; }
+  .plan { height: 100%; display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: var(--v-8); align-items: start; padding: 3.2rem var(--v-gutter) 1rem; }
   .plan__copy .v-label { display: block; margin-bottom: var(--v-5); }
   .plan__copy h2 { font-size: clamp(1.9rem, .9rem + 2.4vw, 3.3rem); line-height: 1.02; }
   .plan__copy > p { margin-top: var(--v-5); color: var(--v-ink-soft); max-width: 42ch; text-wrap: pretty; }
@@ -161,7 +161,7 @@
   .plan__note b { color: var(--v-ink); font-weight: 600; }
 
   /* тетрадь: разворот из двух страниц, лист вращается вокруг корешка */
-  .nb { --pg: min(calc((100svh - 9.5rem) / 1.38), 24rem, 21vw); --lh: 1.75rem; --pad: 1.35rem;
+  .nb { --pg: min(calc((100svh - 13rem) / 1.38), 22rem, 21vw); --lh: 1.45rem; --pad: 1.1rem;
     position: relative; width: calc(var(--pg) * 2); height: calc(var(--pg) * 1.38); margin-left: auto; margin-right: clamp(0rem, 2vw, 2rem);
     perspective: 2400px; transform-style: preserve-3d;
     transform: rotate(-1.1deg); box-shadow: 0 1.6rem 2.2rem rgb(var(--v-shadow-color) / .28); border-radius: 4px; }
@@ -201,23 +201,25 @@
     var(--nb-cover);
     box-shadow: var(--v-e2), inset 0 0 0 1px rgb(255 255 255 / .08); color: var(--nb-cover-ink); display: grid; align-content: end; }
   .leaf--cover .leaf__front::after { background: linear-gradient(to right, rgb(0 0 0 / .32), rgb(0 0 0 / .08) 30%, transparent 55%); }
-  .cover__label { background: var(--nb-paper); color: var(--v-ink); border-radius: 3px; padding: var(--v-4) var(--v-4) var(--v-3); margin-bottom: var(--v-3); display: grid; gap: .35em; box-shadow: 0 1px 2px rgb(0 0 0 / .18); }
-  .cover__label b { font-family: var(--v-font-display); font-weight: 600; font-size: var(--v-t-lg); line-height: 1.15; }
-  .cover__label span { font-size: var(--v-t-sm); color: var(--v-ink-soft); border-bottom: 1px solid var(--v-hair-strong); padding-bottom: .15em; }
+  .cover__label { background: var(--nb-paper); color: var(--v-ink); border-radius: 2px; padding: var(--v-4) var(--v-5) var(--v-3); margin-bottom: var(--v-3); display: grid; gap: .3em;
+    border: 1px solid rgb(0 0 0 / .22);
+    box-shadow: 0 1px 2px rgb(0 0 0 / .16), inset 0 0 0 3px var(--nb-paper), inset 0 0 0 4px rgb(0 0 0 / .16); }
+  .cover__label b { font-family: var(--v-font-display); font-weight: 600; font-size: clamp(1.05rem, 1rem + .25vw, 1.2rem); line-height: 1.15; text-align: center; letter-spacing: .01em; }
+  .cover__label span { font-size: var(--v-t-xs); color: var(--v-ink-soft); border-bottom: 1px solid var(--v-hair-strong); padding-bottom: .18em; }
   .cover__label span i { font-style: normal; color: var(--v-ink); }
   .cover__brand { font-size: var(--v-t-xs); letter-spacing: var(--v-track-wide); text-transform: uppercase; opacity: .8; }
   /* страница этапа: заголовок и строки ложатся на линейку */
-  .pg__week { font-size: var(--v-t-sm); color: var(--v-accent-deep); font-weight: 600; line-height: var(--lh); font-variant-numeric: tabular-nums; }
-  .pg__title { font-family: var(--v-font-display); font-weight: 600; font-size: var(--v-t-lg); line-height: var(--lh); color: var(--v-ink); }
-  .pg__lines { margin-top: var(--lh); }
-  .pg__lines li { line-height: var(--lh); font-size: var(--v-t-sm); color: var(--v-ink); padding-left: 1.1em; position: relative; }
+  .pg__week { font-size: var(--v-t-xs); letter-spacing: .09em; text-transform: uppercase; color: var(--v-accent-deep); font-weight: 600; line-height: var(--lh); font-variant-numeric: tabular-nums; }
+  .pg__title { font-family: var(--v-font-display); font-weight: 600; font-size: clamp(1.05rem, 1rem + .25vw, 1.2rem); line-height: 1.2; margin-top: .1em; color: var(--v-ink); }
+  .pg__lines { margin-top: calc(var(--lh) * .6); }
+  .pg__lines li { line-height: var(--lh); font-size: var(--v-t-xs); color: var(--v-ink-soft); padding-left: 1.1em; position: relative; }
   .pg__lines li::before { content: ""; position: absolute; left: 0; top: calc(var(--lh) / 2 - .2em); width: .4em; height: .4em; border-radius: 50%; background: var(--v-accent-deep); opacity: .7; }
-  .pg__hw { position: absolute; left: var(--pad); right: calc(2.6rem + .4rem); bottom: var(--pad); line-height: var(--lh); font-size: var(--v-t-sm); color: var(--v-ink); }
-  .pg__hw b { font-weight: 600; }
+  .pg__hw { position: absolute; left: var(--pad); right: calc(2.6rem + .4rem); bottom: var(--pad); line-height: var(--lh); font-size: var(--v-t-xs); color: var(--v-ink-soft); }
+  .pg__hw b { font-weight: 600; color: var(--v-ink); }
   .leaf__back .pg__hw { left: calc(var(--pad) + 2.2rem); right: var(--pad); }
-  .pg__note { font-size: var(--v-t-sm); color: var(--v-ink-soft); line-height: var(--lh); }
+  .pg__note { font-size: var(--v-t-xs); letter-spacing: .09em; text-transform: uppercase; color: var(--v-ink-soft); line-height: var(--lh); }
   .pg__blank { display: grid; gap: 0; }
-  .pg__blank span { line-height: var(--lh); font-size: var(--v-t-sm); color: var(--v-ink-soft); display: flex; gap: .6em; align-items: baseline; }
+  .pg__blank span { line-height: var(--lh); font-size: var(--v-t-xs); color: var(--v-ink-soft); display: flex; gap: .6em; align-items: baseline; }
   .pg__blank span::before { content: ""; flex: 1; order: 1; border-bottom: 1px dotted var(--v-hair-strong); transform: translateY(-.35em); }
   .pg__blank span i { order: 2; font-style: normal; color: var(--v-ink); font-weight: 600; }
   /* скобы на корешке */
@@ -231,7 +233,7 @@
     .stages li { padding: var(--v-2) 0; grid-template-columns: 5.6rem 1fr; }
     .plan__note { display: none; }
     /* на телефоне видна одна страница: разворот сдвинут так, что правая страница по центру, перевёрнутые листы уходят за край */
-    .nb { --pg: min(calc(100vw - 2 * var(--v-gutter) - 1rem), calc((100svh - 26.5rem) / 1.38), 20rem); --lh: 1.6rem; --pad: 1.1rem; margin: var(--v-3) 0 0 calc(50% - var(--pg) * 1.5); align-self: start; transform: rotate(-.5deg); }
+    .nb { --pg: min(calc(100vw - 2 * var(--v-gutter) - 1rem), calc((100svh - 26.5rem) / 1.38), 20rem); --lh: 1.45rem; --pad: 1.1rem; margin: var(--v-3) 0 0 calc(50% - var(--pg) * 1.5); align-self: start; transform: rotate(-.5deg); }
   }
   @media (max-width: 400px) { .nb { --lh: 1.5rem; } }
   @media (min-width: 861px) and (max-height: 760px) { .nb { --lh: 1.6rem; --pad: 1.1rem; } .plan__copy > p { display: none; } }
